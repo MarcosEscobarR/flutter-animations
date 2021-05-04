@@ -1,21 +1,43 @@
-import 'package:disenhos/models/slide_page_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Sliders extends StatelessWidget {
   final List<Widget> slides;
-
-  const Sliders({@required this.slides});
+  final Color primaryColor;
+  final Color secondaryColor;
+  final double primaryBullet;
+  final double secondaryBullet;
+  const Sliders(
+      {@required this.slides,
+      this.primaryColor,
+      this.secondaryColor,
+      this.primaryBullet,
+      this.secondaryBullet});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => new SlidePageModel(),
-      child: Center(
-          child: Column(
-        children: [Expanded(child: _Slides(slides)), _Dots(this.slides.length)],
-      )),
-    );
+        create: (_) => new _SlideShowModel(),
+        child: Builder(
+          builder: (BuildContext context) {
+            Provider.of<_SlideShowModel>(context).primaryColor =
+                this.primaryColor;
+            Provider.of<_SlideShowModel>(context).secondaryColor =
+                this.secondaryColor;
+            Provider.of<_SlideShowModel>(context).primaryBullet =
+                this.primaryBullet;
+            Provider.of<_SlideShowModel>(context).secondaryBullet =
+                this.secondaryBullet;
+
+            return Center(
+                child: Column(
+              children: [
+                Expanded(child: _Slides(slides)),
+                _Dots(this.slides.length)
+              ],
+            ));
+          },
+        ));
   }
 }
 
@@ -41,17 +63,24 @@ class _Dot extends StatelessWidget {
   const _Dot(this.index);
   @override
   Widget build(BuildContext context) {
-    final currentPage = Provider.of<SlidePageModel>(context).currentPage;
+    final sliderProvider = Provider.of<_SlideShowModel>(context);
+
+    double tamano;
+    Color color;
+    if (sliderProvider.currentPage >= index - 0.5 &&
+        sliderProvider.currentPage <= index + 0.5) {
+      tamano = sliderProvider.primaryBullet;
+      color = sliderProvider.primaryColor;
+    } else {
+      tamano = sliderProvider.secondaryBullet;
+      color = sliderProvider.secondaryColor;
+    }
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
-      height: 10,
-      width: 10,
+      height: tamano,
+      width: tamano,
       margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: (currentPage >= index - 0.5 && currentPage <= index + 0.5)
-              ? Colors.blue
-              : Colors.grey,
-          shape: BoxShape.circle),
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 }
@@ -70,7 +99,7 @@ class __SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      Provider.of<SlidePageModel>(context, listen: false).currentPage =
+      Provider.of<_SlideShowModel>(context, listen: false).currentPage =
           pageViewController.page;
     });
     super.initState();
@@ -104,5 +133,42 @@ class _Slide extends StatelessWidget {
       padding: EdgeInsets.all(30),
       child: slide,
     );
+  }
+}
+
+class _SlideShowModel with ChangeNotifier {
+  double _currentPage = 0;
+  Color _primaryColor = Colors.blue;
+  Color _secondaryColor = Colors.grey;
+  double _primaryBullet = 12;
+  double _secondaryBullet = 12;
+
+  double get currentPage => this._currentPage;
+
+  set currentPage(double page) {
+    this._currentPage = page;
+    notifyListeners();
+  }
+
+  Color get primaryColor => this._primaryColor;
+
+  set primaryColor(Color color) {
+    this._primaryColor = color;
+  }
+
+  Color get secondaryColor => this._secondaryColor;
+
+  set secondaryColor(Color color) {
+    this._secondaryColor = color;
+  }
+
+  double get primaryBullet => this._primaryBullet;
+  set primaryBullet(double size) {
+    this._primaryBullet = size;
+  }
+
+  double get secondaryBullet => this._secondaryBullet;
+  set secondaryBullet(double size) {
+    this._primaryBullet = size;
   }
 }

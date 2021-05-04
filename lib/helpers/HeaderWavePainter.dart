@@ -6,7 +6,7 @@ class HeaderWavePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = new Paint();
     paint.color = Colors.blueAccent;
-    paint.style = PaintingStyle.fill;
+    paint.style = PaintingStyle.fill; 
 
     final path = new Path();
     path.lineTo(0, size.height * 0.25);

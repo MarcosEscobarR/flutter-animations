@@ -99,6 +99,7 @@ class HeaderWave extends StatelessWidget {
     );
   }
 }
+  
 class HeaderWaveGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

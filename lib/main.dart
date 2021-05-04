@@ -3,9 +3,13 @@
 // import 'package:disenhos/labs/circular_progress_page.dart';
 // import 'package:disenhos/pages/grafica_circular_page.dart';
 // import 'package:disenhos/pages/header_page.dart';
+import 'package:disenhos/labs/slider_page.dart';
+import 'package:disenhos/pages/pinterest_page.dart';
+import 'package:disenhos/pages/slider-page.dart';
+import 'package:disenhos/pruebas/main.dart';
 import 'package:flutter/material.dart';
 
-import 'package:disenhos/pages/slider-page.dart';
+// import 'package:disenhos/pages/slider-page.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Disenhos',
-      home: SlidersPage(),
+      home: PinterestPage(),
     );
   }
 }
