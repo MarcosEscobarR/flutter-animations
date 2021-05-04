@@ -4,6 +4,7 @@
 // import 'package:disenhos/pages/grafica_circular_page.dart';
 // import 'package:disenhos/pages/header_page.dart';
 import 'package:disenhos/labs/slider_page.dart';
+import 'package:disenhos/pages/emergency_page.dart';
 import 'package:disenhos/pages/pinterest_page.dart';
 import 'package:disenhos/pages/slider-page.dart';
 import 'package:disenhos/pruebas/main.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Disenhos',
-      home: PinterestPage(),
+      home: EmergencyPage(),
     );
   }
 }

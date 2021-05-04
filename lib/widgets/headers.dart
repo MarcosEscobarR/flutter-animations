@@ -5,6 +5,7 @@ import 'package:disenhos/helpers/HeaderTringuloPainter.dart';
 import 'package:disenhos/helpers/HeaderWaveGradientPainter.dart';
 import 'package:disenhos/helpers/HeaderWavePainter.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HeaderCuadrado extends StatelessWidget {
   const HeaderCuadrado({Key key}) : super(key: key);
@@ -112,5 +113,9 @@ class HeaderWaveGradient extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 
