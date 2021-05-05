@@ -53,7 +53,6 @@ class _PinterestGridState extends State<PinterestGrid> {
         Provider.of<_ScrollProvider>(context, listen: false).mostrar = true;
       }
       scrollAnterior = scrollController.offset;
-      print(this.scrollController.offset);
     });
     super.initState();
   }
