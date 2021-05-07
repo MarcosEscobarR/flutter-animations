@@ -5,6 +5,7 @@
 // import 'package:disenhos/pages/header_page.dart';
 import 'package:disenhos/labs/slider_page.dart';
 import 'package:disenhos/pages/emergency_page.dart';
+import 'package:disenhos/pages/luancher_page.dart';
 import 'package:disenhos/pages/pinterest_page.dart';
 import 'package:disenhos/pages/slider-page.dart';
 import 'package:disenhos/pages/sliver_list_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Disenhos',
-      home: SliverListPage(),
+      home: LauncherPage(),
     );
   }
 }
