@@ -1,7 +1,9 @@
+import 'package:disenhos/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:disenhos/Routes/Routes.dart';
+import 'package:provider/provider.dart';
 
 class LauncherPage extends StatelessWidget {
 
@@ -47,6 +49,7 @@ class _MenuOptions extends StatelessWidget {
 class _MenuDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
     return Drawer(
         child: Container(
       child: Column(
@@ -65,20 +68,26 @@ class _MenuDrawer extends StatelessWidget {
           ),
           Expanded(child: _MenuOptions()),
           ListTile(
-            title: Text('Cambiar de Tema'),
+            title: Text('Dark Mode'),
             leading: Icon(
               Icons.lightbulb_outline,
               color: Colors.blue,
             ),
-            trailing: Switch.adaptive(value: true, onChanged: (value) {}),
+            trailing: Switch.adaptive(
+                value: theme.darkMode,
+                onChanged: (value) => theme.darkMode = value
+                ),
           ),
           ListTile(
-            title: Text('Tema Custom '),
+            title: Text('Custom Theme'),
             leading: Icon(
               Icons.add_to_home_screen_outlined,
               color: Colors.blue,
             ),
-            trailing: Switch.adaptive(value: true, onChanged: (value) {}),
+            trailing: Switch.adaptive(
+                value: theme.customMode,
+                onChanged: (value)  => theme.customMode = value
+                ),
           )
         ],
       ),
