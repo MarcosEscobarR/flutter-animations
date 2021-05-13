@@ -5,13 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:disenhos/Routes/Routes.dart';
 import 'package:provider/provider.dart';
 
-class LauncherPage extends StatelessWidget {
+class LauncherPageTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Disenhos en Flutter - mobile')),
+        title: Center(child: Text('Disenhos en Flutter - tablet')),
       ),
       body: _MenuOptions(),
       drawer: _MenuDrawer(),
